@@ -11,7 +11,7 @@ function App() {
   const [isLoggedIn, setLogin] = useState(false);
   return (
     <div>
-      <NavBar />
+      <NavBar isLoggedIn={isLoggedIn} setLogin={setLogin} />
       <Routes>
         <Route path="/" element={<ProductAll />} />
         <Route

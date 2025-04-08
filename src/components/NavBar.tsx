@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-const NavBar = () => {
+interface NavBarProps {
+  isLoggedIn: boolean;
+  setLogin: (value: boolean) => void;
+}
+
+const NavBar = ({ isLoggedIn, setLogin }: NavBarProps) => {
   const menuList = [
     "여성",
     "Divided",
@@ -14,9 +19,16 @@ const NavBar = () => {
   ];
   const [menuOpen, setMenuOpen] = useState(false);
   const nav = useNavigate();
-  const goToLogin = () => {
-    nav("/login");
+
+  const handleAuth = () => {
+    if (isLoggedIn) {
+      setLogin(false);
+      nav("/");
+    } else {
+      nav("/login");
+    }
   };
+
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const search = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -28,8 +40,8 @@ const NavBar = () => {
     <nav className="w-full">
       <div className="flex justify-end items-center space-x-2 mb-4">
         <img src="/login.svg" alt="로그인이미지" className="w-6 h-6" />
-        <div className=" cursor-pointer" onClick={goToLogin}>
-          로그인
+        <div className="cursor-pointer" onClick={handleAuth}>
+          {isLoggedIn ? "로그아웃" : "로그인"}
         </div>
       </div>
 
