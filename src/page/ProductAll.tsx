@@ -2,14 +2,20 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Product } from "../types/product";
 import ProductCard from "../components/ProductCard";
+import { useSearchParams } from "react-router";
 
 const ProductAll = () => {
   const [productList, setProductList] = useState<Product[]>([]);
+  const [query, setQuery] = useSearchParams();
   const getProducts = async () => {
     try {
-      const url = "http://localhost:3000/products";
+      const searchQuery = query.get("q") || "";
+      console.log(searchQuery);
+      const url = `https://my-json-server.typicode.com/Dante0214/shopping/products?q=${searchQuery}`;
+
       const response = await axios.get(url);
       const data = response.data;
+      console.log(data);
       setProductList(data);
       return data;
     } catch (error) {
@@ -19,7 +25,7 @@ const ProductAll = () => {
   };
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [query]);
 
   return (
     <div className="max-w-screen-xl mx-auto p-4">

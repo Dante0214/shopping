@@ -1,14 +1,22 @@
 import React from "react";
 import { Product } from "../types/product";
+import { useNavigate } from "react-router";
 
 interface ProductCardProps {
   item: Product;
 }
 
 const ProductCard = ({ item }: ProductCardProps) => {
+  const nav = useNavigate();
+  const showDetail = () => {
+    nav(`/detail/${item.id}`);
+  };
   return (
     <div className="w-full p-2">
-      <div className="product-card rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
+      <div
+        className="product-card rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+        onClick={showDetail}
+      >
         <img className="w-full" src={item.img} alt={item.title} />
         <div className="p-4">
           <div className="font-semibold">{item.title}</div>
