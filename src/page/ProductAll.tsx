@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Product } from "../types/product";
 import ProductCard from "../components/ProductCard";
@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router";
 
 const ProductAll = () => {
   const [productList, setProductList] = useState<Product[]>([]);
-  const [query, setQuery] = useSearchParams();
+  const [query] = useSearchParams();
   const getProducts = async () => {
     try {
       const searchQuery = query.get("q") || "";
