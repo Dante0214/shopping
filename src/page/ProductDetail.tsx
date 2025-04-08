@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Product } from "../types/product";
 import axios from "axios";
+import Loading from "../components/Loading";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -29,11 +30,7 @@ const ProductDetail = () => {
   }, [id]);
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (error) {
