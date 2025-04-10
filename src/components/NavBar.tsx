@@ -38,21 +38,19 @@ const NavBar = ({ isLoggedIn, setLogin }: NavBarProps) => {
   };
   return (
     <nav className="w-full">
-      <div className="flex justify-end items-center space-x-2 mb-4">
+      <div className="flex justify-end items-center space-x-2  p-6">
         <img src="/login.svg" alt="로그인이미지" className="w-6 h-6" />
         <div className="cursor-pointer" onClick={handleAuth}>
           {isLoggedIn ? "로그아웃" : "로그인"}
         </div>
       </div>
 
-      <div
-        className="flex justify-center mb-4 cursor-pointer"
-        onClick={() => nav("/")}
-      >
+      <div className="flex justify-center mb-4 ">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1064px-H%26M-Logo.svg.png"
           alt="logo"
-          className="w-30"
+          className="w-30 cursor-pointer"
+          onClick={() => nav("/")}
         />
       </div>
 
